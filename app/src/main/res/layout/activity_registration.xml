@@ -3,65 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.eason_hsu.menus.LoginActivity">
+    tools:context="com.example.eason_hsu.menus.RegistrationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewLoginEmail"
+            android:id="@+id/textViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="信箱:" />
 
         <EditText
-            android:id="@+id/editTextLoginEmail"
+            android:id="@+id/editTextRegistrationEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="menus@gmail.com"
             android:inputType="textEmailAddress" />
 
         <TextView
-            android:id="@+id/textViewLoginPassword"
+            android:id="@+id/textViewNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="稱號:" />
+
+        <EditText
+            android:id="@+id/editTextNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="王大明"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textViewPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="密碼:" />
 
         <EditText
-            android:id="@+id/editTextLoginPassword"
+            android:id="@+id/editTextRegistrationPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textViewConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="確認密碼:" />
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonEmailLogin"
+            android:id="@+id/buttonRegistration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="e-mail登入"
-            android:onClick="email_login"/>
-
-        <Button
-            android:id="@+id/buttonFacebookLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Facebook登入" />
-
-        <Button
-            android:id="@+id/buttonGoogleLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Google登入" />
-
-        <TextView
-            android:id="@+id/textViewRegistration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="還沒有帳號嗎?立即申請"
-            android:onClick="registration"/>
+            android:text="註冊"
+            android:onClick="createUser"/>
     </LinearLayout>
+
 </RelativeLayout>
