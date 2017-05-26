@@ -20,13 +20,12 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+    private User user;
 
     private EditText editTextRegistrationEmail;
     private EditText editTextNickname;
     private EditText editTextRegistrationPassword;
     private EditText editTextConfirmPassword;
-
-    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+
         editTextRegistrationEmail = (EditText)findViewById(R.id.editTextRegistrationEmail);
         editTextNickname = (EditText)findViewById(R.id.editTextNickname);
         editTextRegistrationPassword = (EditText)findViewById(R.id.editTextRegistrationPassword);
@@ -43,8 +43,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
     public void createUser(View view){
         final String email = editTextRegistrationEmail.getText().toString();
-        final String nickname = editTextNickname.getText().toString();
         final String password = editTextRegistrationPassword.getText().toString();
+        final String nickname = editTextNickname.getText().toString();
         String confirmPassword = editTextConfirmPassword.getText().toString();
 
         if(password.equals(confirmPassword)) {
@@ -55,11 +55,20 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Log.d("Registration", "onComplete yes");
-                                Toast.makeText(RegistrationActivity.this, "帳號建立完成", Toast.LENGTH_LONG).show();
-                                getIntent().putExtra("USEREMAIL", email);
-                                getIntent().putExtra("USERPASSWORD", password);
-                                setResult(RESULT_OK, getIntent());
-                                finish();
+                                try{
+                                    user = new User();
+                                    user.setUid(firebaseUser.getUid());
+                                    user.setEmail(email);
+                                    user.setNickname(nickname);
+                                    user.saveUser("EMAIL");
+                                    Toast.makeText(RegistrationActivity.this, "帳號建立完成", Toast.LENGTH_LONG).show();
+                                    getIntent().putExtra("USEREMAIL", email);
+                                    getIntent().putExtra("USERPASSWORD", password);
+                                    setResult(RESULT_OK, getIntent());
+                                    finish();
+                                } catch (Exception ex){
+                                    Log.d("ERROR:", ex.getMessage());
+                                }
                             } else {
                                 Log.w("Registration", "ERROR", task.getException());
                                 Toast.makeText(RegistrationActivity.this, "註冊失敗", Toast.LENGTH_LONG).show();
@@ -73,4 +82,5 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(RegistrationActivity.this, "請確認密碼欄與確認碼欄是否一致", Toast.LENGTH_LONG).show();
         }
     }
+
 }

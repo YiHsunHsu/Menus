@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:id="@+id/textViewLoginEmail"
@@ -48,7 +49,8 @@
             android:id="@+id/buttonFacebookLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Facebook登入" />
+            android:text="Facebook登入"
+            android:onClick="facebook_login"/>
 
         <Button
             android:id="@+id/buttonGoogleLogin"
